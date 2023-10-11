@@ -1,9 +1,20 @@
+// .eslintrc.js
 module.exports = {
-    root: true,
-    extends: '@react-native-community',
+    env: {
+      browser: true,
+      es6: true,
+      jest: true,
+    },
+    extends: [
+      'airbnb',
+      'prettier',
+      'prettier/react',
+    ],
     parser: 'babel-eslint',
     rules: {
-      'prettier/prettier': 'error',
+      'no-unused-vars': 'error',
+      'no-unreachable': 'error',
+      // Add other ESLint rules as needed
     },
   };
   
