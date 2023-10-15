@@ -1,51 +1,68 @@
-import React from "react";
-import {View, Text} from "react-native";
-import styles from "./styles";
-
+import React, { useState } from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/EvilIcons';
 //interface for the props that customComponent
 
 interface customComponentProps {
     //Container 
-    width: number;
     height: number;
     backgroundColor: string;
-    borderRadius: number;
     //Text
     textColor: string;
     textSize: number;
-    fontFamily: string;
     //Children Text
-    name: string
+    name: string;
+    //close icon size 
+    CloseSize: number;
 }
 /* React.FC is a TypeScript type alias that stands for React Function Component "
     used to define the type of functional component in React when working with TypeScript" */
 const CustomComponent: React.FC<customComponentProps> = ({ 
-  width,
-  height,
-  backgroundColor,
-  borderRadius,
-  textColor,
-  textSize,
-  fontFamily,
-  name
+    height,
+    backgroundColor,
+    textColor,
+    textSize,
+    name,
+    CloseSize
 }) => {
+    const [isCloseClicked, setIsCloseClicked] = useState(false);
+    const toggleCloseIcon = () => {
+        console.log(isCloseClicked)
+        setIsCloseClicked(!isCloseClicked);
+      };
+    //Container Styling 
+    const borderRadius = (height * 0.45);
     const containerStyle = {
-        width, 
         height,
         backgroundColor,
-        borderRadius,
+        borderRadius
     }
     const textStyle = {
         color: textColor,
         fontSize: textSize,
-        fontFamily: fontFamily
     }
-    return (
-        <View style={[styles.container, containerStyle]}>
+    //CloseIcon
+    const tagComponent = <View style={[styles.container, containerStyle]}>
             <Text style={[styles.text, textStyle]}>{name}</Text>
+            <Icon name="close" size={CloseSize} color="white" onPress={toggleCloseIcon}/>
         </View>
-    )
-
+    //returned Container
+    return tagComponent
 }
 
 export default CustomComponent;
+
+const styles = StyleSheet.create({
+    container: {
+        display: "flex",
+        flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center', 
+      alignContent: 'center',
+      width: 'auto',
+      padding: 5,
+    },
+    text: {
+      color: 'white',
+    },
+  });
