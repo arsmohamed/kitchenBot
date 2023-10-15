@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Icon from 'react-native-vector-icons/EvilIcons';
 //interface for the props that customComponent
 
-interface customComponentProps {
+interface TagComponentProps {
   //Container
   height: number;
   backgroundColor: string;
   //Text
   textColor: string;
-  textSize: number;
   //Children Text
   name: string;
-  //close icon size
-  CloseSize: number;
+  onClick: (name: string) => void; // Add the onClick prop
 }
 /* React.FC is a TypeScript type alias that stands for React Function Component "
     used to define the type of functional component in React when working with TypeScript" */
-const CustomComponent: React.FC<customComponentProps> = ({
+const TagComponent: React.FC<TagComponentProps> = ({
   height,
   backgroundColor,
   textColor,
-  textSize,
   name,
-  CloseSize,
+  onClick,
 }) => {
   const [isCloseClicked, setIsCloseClicked] = useState(false);
   const toggleCloseIcon = () => {
     console.log(isCloseClicked);
     setIsCloseClicked(!isCloseClicked);
+    if (isCloseClicked) {
+      onClick(name);
+    }
   };
   //Container Styling
   const borderRadius = height * 0.45;
@@ -39,25 +39,21 @@ const CustomComponent: React.FC<customComponentProps> = ({
   };
   const textStyle = {
     color: textColor,
-    fontSize: textSize,
   };
   //CloseIcon
   const tagComponent = (
     <View style={[styles.container, containerStyle]}>
       <Text style={[styles.text, textStyle]}>{name}</Text>
-      <Icon
-        name="close"
-        size={CloseSize}
-        color="white"
-        onPress={toggleCloseIcon}
-      />
+      <TouchableWithoutFeedback onPress={toggleCloseIcon}>
+        <Icon name="close" size={'24'} color="white" />
+      </TouchableWithoutFeedback>
     </View>
   );
   //returned Container
   return tagComponent;
 };
 
-export default CustomComponent;
+export default TagComponent;
 
 const styles = StyleSheet.create({
   container: {
@@ -71,5 +67,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
+    textSize: 12,
+    marginLeft: 10,
   },
 });
