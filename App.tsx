@@ -1,17 +1,15 @@
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Tag from './src/components/general/tagComponent/index';
 import Input from "./src/components/general/textInputComponent/index";
 
 export default function App() {
+  // State to manage the input value
+  const [InputText, setInputText] = useState(''); 
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
-      <Input
-        text={"text"}
-        placeholder="Enter text here" 
-        // onChangeText={(newText) => setText(newText)}
-      />
       <StatusBar style="auto" />
     </View>
   );

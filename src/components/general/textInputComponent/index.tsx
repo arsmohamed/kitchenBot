@@ -2,36 +2,27 @@ import React, { useState } from 'react';
 import { TextInput, ViewStyle, TextStyle, StyleSheet } from 'react-native';
 
 interface CustomTextInputProps {
-  text: string;
-  placeholder: string;
-//   style: {
-//     container?: ViewStyle;
-//     input?: TextStyle;
-//   };
-//   onChangeText: (text: string) => void;
+  placeholder: string; 
+  onChangeText: (name: string) => void;
 }
 
 const CustomTextInput: React.FC<CustomTextInputProps> = ({
-  text,
   placeholder,
-//   style,
-//   onChangeText,
+  onChangeText,
 }) => {
   return (
     <TextInput
-      value={text}
       placeholder={placeholder}
-    //   style={[styles.input, style.container]}
-      placeholderTextColor="#999" // Customize the placeholder text color
-    //   onChangeText={onChangeText}
+      onChangeText={onChangeText}
       style={styles.input}
+      placeholderTextColor="#999" // Customize the placeholder text color
     />
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    width: '100%',
+    width: '90%',
     height: 'auto',
     borderBottomWidth: 1,
   },
