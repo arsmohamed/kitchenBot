@@ -8,23 +8,23 @@ interface CustomTextInputProps {
 //     container?: ViewStyle;
 //     input?: TextStyle;
 //   };
-  onChangeText: (text: string) => void;
+//   onChangeText: (text: string) => void;
 }
 
 const CustomTextInput: React.FC<CustomTextInputProps> = ({
   text,
   placeholder,
-  style,
-  onChangeText,
+//   style,
+//   onChangeText,
 }) => {
   return (
     <TextInput
       value={text}
       placeholder={placeholder}
-      style={[styles.input, style.container]}
+    //   style={[styles.input, style.container]}
       placeholderTextColor="#999" // Customize the placeholder text color
-      onChangeText={onChangeText}
-      style={[styles.input, style.input]}
+    //   onChangeText={onChangeText}
+      style={styles.input}
     />
   );
 };
