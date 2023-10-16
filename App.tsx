@@ -1,10 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import CustomTextInput from "./src/components/textInputComponent/index";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
+      {/* <CustomTextInput
+        text={"text"}
+        placeholder="Enter text here" 
+        onChangeText={(newText) => setText(newText)}
+      /> */}
       <StatusBar style="auto" />
     </View>
   );
