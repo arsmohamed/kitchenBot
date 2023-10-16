@@ -1,26 +1,37 @@
-import { Text, View, Pressable, Image, StyleSheet } from 'react-native';
+import { View, Pressable, Image, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 
 export default function NavigationBar() {
+    const [selectedIcon, setSelectedIcon] = useState("calendar");
+
+    const iconData = [
+        { iconName: 'chat', imageSource: require('../../../../assets/navBar/chat.png') },
+        { iconName: 'basket', imageSource: require('../../../../assets/navBar/basket.png') },
+        { iconName: 'calendar', imageSource: require('../../../../assets/navBar/calendar.png') },
+        { iconName: 'save', imageSource: require('../../../../assets/navBar/save.png') },
+        { iconName: 'gear', imageSource: require('../../../../assets/navBar/gear.png') },
+      ];
+
+    const selectIcon = (iconName: string) => {
+        setSelectedIcon(iconName)
+    }
+
     return (
         <View style={navBarStyles.NavContainer}>
-            <View style={navBarStyles.NavBar}>
-                <Pressable style={navBarStyles.IconBehave}>
-                    <Image source={require('../../../../assets/navBar/chat.png')} />
-                </Pressable>
-                <Pressable style={navBarStyles.IconBehave}>
-                    <Image source={require('../../../../assets/navBar/basket.png')} />
-                </Pressable>
-                <Pressable style={navBarStyles.IconBehave}>
-                    <Image source={require('../../../../assets/navBar/calendar.png')} />
-                </Pressable>
-                <Pressable style={navBarStyles.IconBehave}>
-                    <Image source={require('../../../../assets/navBar/save.png')} />
-                </Pressable>
-                <Pressable style={navBarStyles.IconBehave}>
-                    <Image source={require('../../../../assets/navBar/gear.png')} />
-                </Pressable>
-            </View>
-        </View>
+      <View style={navBarStyles.NavBar}>
+        {iconData.map((icon, index) => (
+          <Pressable
+            key={index}
+            onPress={() => selectIcon(icon.iconName)}
+            style={navBarStyles.IconBehave}
+            android_ripple={{ borderless: true, radius: 30 }}
+          >
+            {selectedIcon === icon.iconName && <Image style={navBarStyles.IconSelected} source={require('../../../../assets/navBar/selected.png')} />}
+            <Image source={icon.imageSource} />
+          </Pressable>
+        ))}
+      </View>
+    </View>
     )
 }
 
@@ -39,6 +50,10 @@ const navBarStyles = StyleSheet.create({
     },
     IconBehave: {
         padding: 14
+    },
+    IconSelected: {
+        position:"absolute",
+        padding: 30
     }
   });
   
