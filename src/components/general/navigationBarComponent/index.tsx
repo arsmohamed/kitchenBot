@@ -1,7 +1,7 @@
 import { View, Pressable, Image, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 
-export default function NavigationBar() {
+const NavigationBar = ()=> {
     const [selectedIcon, setSelectedIcon] = useState("calendar");
 
     const iconData = [
@@ -57,3 +57,4 @@ const navBarStyles = StyleSheet.create({
     }
   });
   
+export default NavigationBar;
