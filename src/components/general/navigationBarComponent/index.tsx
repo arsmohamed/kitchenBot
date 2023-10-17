@@ -44,7 +44,7 @@ const NavigationBar = () => {
             {selectedIcon === icon.iconName && (
               <Image
                 style={navBarStyles.IconSelected}
-                source={require('../../../../assets/navBar/selected.png')}
+                source={require('../../../../assets/navBar/selected1.png')}
               />
             )}
             <Image source={icon.imageSource} />
@@ -63,7 +63,7 @@ const navBarStyles = StyleSheet.create({
   },
   NavBar: {
     flexDirection: 'row',
-    backgroundColor: '#eee',
+    backgroundColor: '#2C2B2B',
     width: '95%',
     justifyContent: 'space-evenly',
     borderRadius: 40,
