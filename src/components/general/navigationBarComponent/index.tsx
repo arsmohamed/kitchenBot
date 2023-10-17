@@ -44,7 +44,7 @@ const NavigationBar = () => {
             {selectedIcon === icon.iconName && (
               <Image
                 style={navBarStyles.IconSelected}
-                source={require('../../../../assets/navBar/selected1.png')}
+                source={require('../../../../assets/navBar/selectedForDarkNavBar.png')}
               />
             )}
             <Image source={icon.imageSource} />
