@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Tag from './src/components/general/tagComponent/index';
 import Input from './src/components/general/textInputComponent/index';
+import CustomSearchComponent from './src/components/general/searchInputComponent/indes';
 import NavigationBar from './src/components/general/navigationBarComponent/index';
 
 export default function App() {
@@ -12,6 +13,10 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
+      {/* <CustomSearchComponent
+        placeholder="Search Recipe "
+        onChangeText={(text) => console.log(`Search query: ${text}`)}
+      /> */}
       <NavigationBar />
     </View>
   );
