@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Tag from './src/components/general/tagComponent/index';
 import Input from './src/components/general/textInputComponent/index';
 import NavigationBar from './src/components/general/navigationBarComponent/index';
+import Duration from './src/components/general/DurationComponent/index';
 
 export default function App() {
   // State to manage the input value
@@ -12,6 +13,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Open up App.tsx to start working on your app!</Text>
       <StatusBar style="auto" />
+      <Duration StartTime={40} EndTime={50} />
       <NavigationBar />
     </View>
   );
