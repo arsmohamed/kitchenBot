@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Tag from './src/components/general/tagComponent/index';
 import Input from './src/components/general/textInputComponent/index';
 import NavigationBar from './src/components/general/navigationBarComponent/index';
+import TagSearch from './src/components/general/tagSearchComponent/index';
 
 export default function App() {
   // State to manage the input value

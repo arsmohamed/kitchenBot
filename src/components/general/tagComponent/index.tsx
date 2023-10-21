@@ -4,38 +4,39 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 //interface for the props that customComponent
 
 interface TagComponentProps {
-  //Container
-  height: number;
+  // height: number;
   backgroundColor: string;
-  //Text
-  textColor: string;
-  //Children Text
-  name: string;
+  textColor: string; //Text
+  name: string; //Children Text
   onClick: (name: string) => void; // Add the onClick prop
+  isActive: boolean; // New prop to determine the active state
 }
-/* React.FC is a TypeScript type alias that stands for React Function Component "
-    used to define the type of functional component in React when working with TypeScript" */
+
 const TagComponent: React.FC<TagComponentProps> = ({
-  height,
+  // height,
   backgroundColor,
   textColor,
   name,
+  isActive,
   onClick,
 }) => {
   const [isCloseClicked, setIsCloseClicked] = useState(false);
+
   const toggleCloseIcon = () => {
     console.log(isCloseClicked);
-    setIsCloseClicked(!isCloseClicked);
-    if (isCloseClicked) {
-      onClick(name);
+    if (isActive) {
+      setIsCloseClicked(!isCloseClicked);
+      if (isCloseClicked) {
+        onClick(name);
+      }
     }
   };
   //Container Styling
-  const borderRadius = height * 0.45;
+  // const borderRadius = height * 0.45;
   const containerStyle = {
-    height,
+    // height,
     backgroundColor,
-    borderRadius,
+    // borderRadius,
   };
   const textStyle = {
     color: textColor,
@@ -44,9 +45,14 @@ const TagComponent: React.FC<TagComponentProps> = ({
   const tagComponent = (
     <View style={[styles.container, containerStyle]}>
       <Text style={[styles.text, textStyle]}>{name}</Text>
-      <TouchableWithoutFeedback onPress={toggleCloseIcon}>
-        <Icon name="close" size={'24'} color="white" />
-      </TouchableWithoutFeedback>
+      {isActive && (
+        <TouchableWithoutFeedback
+          onPress={toggleCloseIcon}
+          disabled={!isActive}
+        >
+          <Icon name="close" size={'24'} color="white" />
+        </TouchableWithoutFeedback>
+      )}
     </View>
   );
   //returned Container
@@ -63,11 +69,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     width: 'auto',
-    padding: 5,
+    paddingRight: 10,
+    paddingLeft: 10,
+    borderRadius: 45,
   },
   text: {
     color: 'white',
     textSize: 12,
-    marginLeft: 10,
+    fontWeight: 'bold',
   },
 });
