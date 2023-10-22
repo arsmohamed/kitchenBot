@@ -50,6 +50,7 @@ const TagSearchComponent: React.FC = () => {
             name={tag}
             onClick={() => console.log('clicked')}
             isActive={false}
+            key={index}
           />
         ))}
       </View>
