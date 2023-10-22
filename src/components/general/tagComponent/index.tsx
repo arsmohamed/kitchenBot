@@ -50,7 +50,7 @@ const TagComponent: React.FC<TagComponentProps> = ({
           onPress={toggleCloseIcon}
           disabled={!isActive}
         >
-          <Icon name="close" size={'24'} color="white" />
+          <Icon name="close" size={24} color="white" />
         </TouchableWithoutFeedback>
       )}
     </View>
