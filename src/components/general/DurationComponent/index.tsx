@@ -34,7 +34,7 @@ const DurationStyle = StyleSheet.create({
   TextStyle: {
     fontSize: 20,
     fontWeight: 'bold',
-    fontFamily: 'nunito',
+    // fontFamily: 'nunito',
     color: 'white',
     marginLeft: 10,
   },
