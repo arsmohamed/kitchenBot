@@ -71,11 +71,13 @@ const styles = StyleSheet.create({
     width: 'auto',
     paddingRight: 10,
     paddingLeft: 10,
+    paddingBottom: 3,
+    paddingTop: 3,
     borderRadius: 45,
   },
   text: {
     color: 'white',
-    textSize: 12,
+    fontSize: 13,
     fontWeight: 'bold',
   },
 });
