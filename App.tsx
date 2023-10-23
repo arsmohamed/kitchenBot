@@ -6,7 +6,6 @@ import CustomSearchComponent from './src/components/general/searchInputComponent
 import NavigationBar from './src/components/general/navigationBarComponent/index';
 import TagSearch from './src/components/general/tagSearchComponent/index';
 import Duration from './src/components/general/DurationComponent/index';
-
 export default function App() {
   // State to manage the input value
   const [InputText, setInputText] = useState('');
@@ -16,7 +15,6 @@ export default function App() {
       <StatusBar style="auto" />
       <TagSearch />
       <Duration StartTime={40} EndTime={50} />
-
       {/* <CustomSearchComponent
         placeholder="Search Recipe "
         onChangeText={(text) => console.log(`Search query: ${text}`)}
