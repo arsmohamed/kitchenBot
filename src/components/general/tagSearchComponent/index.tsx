@@ -49,7 +49,7 @@ const TagSearchComponent: React.FC = () => {
             textColor="white"
             name={tag}
             onClick={() => console.log('clicked')}
-            isActive={false}
+            isActive={true}
             key={index}
           />
         ))}
