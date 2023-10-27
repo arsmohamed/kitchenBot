@@ -1,12 +1,12 @@
 import React from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
-interface CustomTextInputProps {
+interface CustomSearcgInputProps {
   placeholder: string;
   onChangeText: (name: string) => void;
 }
 
-const CustomTextInput: React.FC<CustomTextInputProps> = ({
+const CustomSearchComponent: React.FC<CustomSearcgInputProps> = ({
   placeholder,
   onChangeText,
 }) => {
@@ -28,4 +28,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomTextInput;
+export default CustomSearchComponent;
