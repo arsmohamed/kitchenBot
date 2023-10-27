@@ -17,11 +17,6 @@ export default function App() {
       <StatusBar style="auto" />
       <TagSearch />
       <Duration StartTime={40} EndTime={50} />
-
-      {/* <CustomSearchComponent
-        placeholder="Search Recipe "
-        onChangeText={(text) => console.log(`Search query: ${text}`)}
-      /> */}
       <Ingredient />
       <NavigationBar />
     </View>

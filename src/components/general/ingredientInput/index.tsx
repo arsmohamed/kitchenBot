@@ -10,21 +10,24 @@ import Icon from 'react-native-vector-icons/EvilIcons';
 import AddIcon from 'react-native-vector-icons/Ionicons';
 
 interface Ingredient {
-  amount: string;
+  amount: number;
   unit: string;
   type: string;
 }
 
 const IngredientInputComponent = () => {
   // Const state section
-  const [amount, setAmount] = useState<string>(''); // State for amount
+  const [amount, setAmount] = useState<number | undefined>(undefined); // State for amount
   const [unit, setUnit] = useState<string>(''); // State for unit
   const [type, setType] = useState<string>(''); // State for type
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>(''); // State to display error message
 
   // Function to handle text input changes
-  const handleAmountChange = (text: string) => setAmount(text);
+  const handleAmountChange = (text: string) => {
+    const parsedAmount = parseFloat(text);
+    setAmount(isNaN(parsedAmount) ? undefined : parsedAmount);
+  };
   const handleUnitChange = (text: string) => setUnit(text);
   const handleTypeChange = (text: string) => setType(text);
 
@@ -40,6 +43,15 @@ const IngredientInputComponent = () => {
     if (!amount || !unit || !type) {
       setErrorMessage('Please enter a value in all fields.');
     } else {
+      const allowedTypes = ['number', 'char', 'string']; // Replace with your allowed types
+      if (
+        typeof amount !== 'number' ||
+        typeof unit !== 'string' ||
+        typeof type !== 'string'
+      ) {
+        setErrorMessage('Invalid type. Please enter valid types.');
+        return;
+      }
       const newIngredient: Ingredient = { amount, unit, type };
       setIngredients([...ingredients, newIngredient]);
       setAmount('');
@@ -133,6 +145,7 @@ const IngredientInputStyle = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     columnGap: 10,
+    marginTop: 5,
   },
   NumberContainerStyle: {
     height: 40,
