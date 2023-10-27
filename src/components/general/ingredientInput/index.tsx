@@ -9,33 +9,38 @@ import {
 import Icon from 'react-native-vector-icons/EvilIcons';
 import AddIcon from 'react-native-vector-icons/Ionicons';
 
-interface IngredientInputProps {
-  Amount: number;
-  Type: string;
+interface Ingredient {
+  amount: string;
+  unit: string;
+  type: string;
 }
 
 const IngredientInputComponent = () => {
+  // Const state section
   const [amount, setAmount] = useState<string>(''); // State for amount
   const [unit, setUnit] = useState<string>(''); // State for unit
   const [type, setType] = useState<string>(''); // State for type
-  const [ingredients, setIngredients] = useState<string[]>([]); // State to store collected ingredients
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>(''); // State to display error message
+
   // Function to handle text input changes
   const handleAmountChange = (text: string) => setAmount(text);
   const handleUnitChange = (text: string) => setUnit(text);
   const handleTypeChange = (text: string) => setType(text);
-  // Function to handle icon click
-  const handleIconClick = () => {
-    setAmount('');
-    setUnit('');
-    setType('');
+
+  // Function to handle icon click and remove the corresponding ingredient
+  const handleIconClick = (index: number) => {
+    const updatedIngredients = [...ingredients];
+    updatedIngredients.splice(index, 1);
+    setIngredients(updatedIngredients);
   };
+
   // Function to handle "Add" button click
   const handleAddClick = () => {
     if (!amount || !unit || !type) {
       setErrorMessage('Please enter a value in all fields.');
     } else {
-      const newIngredient = `${amount} ${unit} ${type}`;
+      const newIngredient: Ingredient = { amount, unit, type };
       setIngredients([...ingredients, newIngredient]);
       setAmount('');
       setUnit('');
@@ -43,6 +48,7 @@ const IngredientInputComponent = () => {
       setErrorMessage('');
     }
   };
+
   //Const for the views
   const IngredientContainer = (
     <View style={IngredientInputStyle.IngredientContainerStyle}>
@@ -64,14 +70,39 @@ const IngredientInputComponent = () => {
         value={type}
         onChangeText={handleTypeChange}
       />
-      <TouchableOpacity onPress={handleIconClick}>
+    </View>
+  );
+  //Const for the views each ingredient
+  const IngredientView = ({
+    ingredient,
+    index,
+  }: {
+    ingredient: Ingredient;
+    index: number;
+  }) => (
+    <View style={IngredientInputStyle.IngredientContainerStyle}>
+      <Text style={IngredientInputStyle.NumberContainerStyle}>
+        {ingredient.amount}
+      </Text>
+      <Text style={IngredientInputStyle.NumberContainerStyle}>
+        {ingredient.unit}
+      </Text>
+      <Text style={IngredientInputStyle.NumberContainerStyle}>
+        {ingredient.type}
+      </Text>
+      <TouchableOpacity onPress={() => handleIconClick(index)}>
         <Icon name="close" size={28} color="grey" />
       </TouchableOpacity>
     </View>
   );
+
   const Container = (
     <View style={IngredientInputStyle.ContainerStyle}>
+      {ingredients.map((ingredient, index) => (
+        <IngredientView key={index} ingredient={ingredient} index={index} />
+      ))}
       {IngredientContainer}
+
       <AddIcon
         name="add-circle-outline"
         size={32}
@@ -81,7 +112,6 @@ const IngredientInputComponent = () => {
       {errorMessage ? (
         <Text style={{ color: 'red' }}>{errorMessage}</Text>
       ) : null}
-      <Text>Ingredients: {ingredients.join(', ')}</Text>
     </View>
   );
 
@@ -119,6 +149,12 @@ const IngredientInputStyle = StyleSheet.create({
   TypeContainerStyle: {
     height: 40,
     width: 160,
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
+  InputStyle: {
+    height: 40,
+    width: '90%',
     borderBottomWidth: 1,
     borderBottomColor: 'black',
   },
