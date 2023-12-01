@@ -6,6 +6,7 @@ import CustomSearchComponent from './src/components/general/searchInputComponent
 import NavigationBar from './src/components/general/navigationBarComponent/index';
 import TagSearch from './src/components/general/tagSearchComponent/index';
 import Duration from './src/components/general/DurationComponent/index';
+import Ingredient from './src/components/general/ingredientInput/index';
 
 export default function App() {
   // State to manage the input value
@@ -16,12 +17,7 @@ export default function App() {
       <StatusBar style="auto" />
       <TagSearch />
       <Duration StartTime={40} EndTime={50} />
-
-      {/* <CustomSearchComponent
-        placeholder="Search Recipe "
-        onChangeText={(text) => console.log(`Search query: ${text}`)}
-      /> */}
-
+      <Ingredient />
       <NavigationBar />
     </View>
   );
